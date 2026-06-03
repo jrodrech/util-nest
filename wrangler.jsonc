@@ -1,0 +1,99 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "cloudflare-api-platform",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-12-05",
+	"compatibility_flags": [
+		"global_fetch_strictly_public"
+	],
+	"observability": {
+		"enabled": true
+	},
+	/**
+	 * Smart Placement
+	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
+	 */
+	// "placement": { "mode": "smart" }
+	/**
+	 * Bindings
+	 * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
+	 * databases, object storage, AI inference, real-time communication and more.
+	 * https://developers.cloudflare.com/workers/runtime-apis/bindings/
+	 */
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "api-platform-db",
+			"database_id": "db374c5b-4017-4bb6-b086-6ec8e7ae49a0"
+		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "PREVIEW_CACHE",
+			"id": "de29d65b9d29457ab90647ae679e3816"
+		},
+		{
+			"binding": "LEASE_CACHE",
+			"id": "de29d65b9d29457ab90647ae679e3816"
+		},
+		{
+			"binding": "GATEWAY_RL",
+			"id": "de29d65b9d29457ab90647ae679e3816"
+		}
+	],
+	/**
+	 * Environment Variables
+	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
+	 */
+	"vars": {
+		"KINDE_CONN_GOOGLE": "conn_019bd2dda02eac774d34ddca14cb5d51",
+		"KINDE_CONN_FACEBOOK": "conn_019bd2dda0356e2cd3c19be655822a12",
+		"KINDE_CONN_GITHUB": "conn_019be83255da88f6c1d7df529869ae49",
+		"KINDE_CONN_MICROSOFT": "conn_019be833907e84c1f6c5f0de4cf4c5c9",
+		"KINDE_CONN_APPLE": "conn_019be834d634f2a98f3b16331a5f819f"
+	},
+	/**
+	 * Note: Use secrets to store sensitive data.
+	 * https://developers.cloudflare.com/workers/configuration/secrets/
+	 */
+	/**
+	 * Static Assets
+	 * https://developers.cloudflare.com/workers/static-assets/binding/
+	 */
+	// "assets": { "directory": "./public/", "binding": "ASSETS" }
+	/**
+	 * Service Bindings (communicate between multiple Workers)
+	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
+	 */
+	// "services": [{ "binding": "MY_SERVICE", "service": "my-service" }],
+	"env": {
+		"dev": {
+			"name": "cloudflare-api-platform-dev",
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "api-platform-db-dev",
+					"database_id": "95623e64-8a49-4317-8ac0-d0841db44bac"
+				}
+			],
+			"kv_namespaces": [
+				{
+					"binding": "PREVIEW_CACHE",
+					"id": "fa2c4ace4659435987021efa9db865fb"
+				},
+				{
+					"binding": "LEASE_CACHE",
+					"id": "3b76a4a9e35e42569a369a306b47870f"
+				},
+				{
+					"binding": "GATEWAY_RL",
+					"id": "cde10954283f412ea82856774cb53582"
+				}
+			]
+		}
+	}
+}

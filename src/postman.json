@@ -1,0 +1,188 @@
+{
+    "info": {
+        "_postman_id": "galactic-registry-v1",
+        "name": "UtilNest - The API Learning Lab (Galactic Registry)",
+        "description": "A collection for learning REST API concepts using the UtilNest Galactic Registry.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "🪐 Planets",
+            "item": [
+                {
+                    "name": "List Planets",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/demo/planets",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "demo",
+                                "planets"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Planet Details",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/demo/planets/1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "demo",
+                                "planets",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Planet",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Arrakis\",\n  \"terrain\": \"Desert\",\n  \"is_habitable\": true\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/demo/planets",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "demo",
+                                "planets"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "👽 Species",
+            "item": [
+                {
+                    "name": "List Species (Filtered)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/demo/species?planet_id=1",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "demo",
+                                "species"
+                            ],
+                            "query": [
+                                {
+                                    "key": "planet_id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "🚀 Starships",
+            "item": [
+                {
+                    "name": "List Starships",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/demo/starships",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "demo",
+                                "starships"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "🧪 Error Lab",
+            "item": [
+                {
+                    "name": "Simulate 418 Teapot",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v1/demo/errors/418",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "demo",
+                                "errors",
+                                "418"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "apikey",
+        "apikey": [
+            {
+                "key": "value",
+                "value": "{{api_key}}",
+                "type": "string"
+            },
+            {
+                "key": "key",
+                "value": "x-api-key",
+                "type": "string"
+            }
+        ]
+    },
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "https://cloudflare-api-platform.jrodrech.workers.dev",
+            "type": "string"
+        },
+        {
+            "key": "api_key",
+            "value": "sk_live_REPLACE_ME",
+            "type": "string"
+        }
+    ]
+}
